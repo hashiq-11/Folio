@@ -114,9 +114,7 @@ p {
   padding-left: 10px;
   margin: 0 0 25px 0;
   line-height: 14px;
-  text-transform: uppercase;
 }
-
 .form-control:focus {
   box-shadow: none;
   outline: 0 none;
@@ -739,6 +737,7 @@ p {
 
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
+  height: 50%;
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination {

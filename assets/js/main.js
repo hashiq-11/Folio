@@ -260,5 +260,38 @@
       clickable: true
     }
   });
+});
 
-})()
+ 
+function validation() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let subject = document.getElementById("subject").value;
+  let message = document.getElementById("Message").value;
+
+  if (name === ""|| email==="" || subject === "" || message === "" ) {
+    document.getElementById("vname").innerHTML = "Enter the name";
+    document.getElementById("iemail").innerHTML = "Enter the email";
+    document.getElementById("vsubject").innerHTML = "Enter the subject";
+    document.getElementById("vMessage").innerHTML = "Enter the message";
+    return false;
+  } else {
+    document.getElementById("vname").innerHTML = "";
+    document.getElementById("iemail").innerHTML = "";
+    document.getElementById("vsubject").innerHTML = "";
+    document.getElementById("vMessage").innerHTML = "";
+  }
+  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+   if (!emailPattern.test(email)) {
+      document.getElementById("iemail").innerHTML = "Enter the proper Email";
+      return false;
+  } else {
+    document.getElementById("iemail").innerHTML = "";
+  }
+
+  return true;
+}
+
+
+

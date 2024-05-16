@@ -9,6 +9,9 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <!-- Ajaks -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <!-- Favicons -->
   <link href="images.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -97,7 +100,7 @@
               <p class="p-heading">im a GameDeveloper  who loves clean, simple & unique design. i also enjoy crafting brand identities, icons, & ilustration work. </p>
               <p> <u>skills.</u><br>
               I am a GameDeveloper. <br>
-              I completed my plestwo.<br>
+              I completed my plus-two.<br>
               I Done an internship program at brototype.
               </p>
               <p>I am a Streamer</p>
@@ -303,41 +306,43 @@
             </div>
 
             <div class="col-lg-6">
-              <form action="https://api.web3forms.com/submit" method="post" role="form" class="php-email-form">
+              <form action=""  role="form" class="php-email-form" id="submit-form" method="post">
                 <div class="row gy-3">
-
                   <div class="col-lg-6">
                     <div class="form-group contact-block1">
-                      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+                      <span id="vname"></span>
                     </div>
                   </div>
 
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                      <pre id="iemail"></pre>
                     </div>
                   </div>
 
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                      <span id="vsubject"></span>
                     </div>
                   </div>
 
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+                      <textarea class="form-control" name="message" placeholder="Message" id="Message"></textarea>
+                      <span id="vMessage"></span>
                     </div>
                   </div>
 
                   <div class="col-lg-12">
                     <div class="loading">Loading</div>
-                    <div class="error-message"></div>
                     <div class="sent-message">Your message has been sent. Thank you!</div>
                   </div>
 
                   <div class="mt-0">
-                    <input type="submit" class="btn btn-defeault btn-send" value="Send message">
+                    <input type="submit" class="btn btn-defeault btn-send"  value="Send message" onclick="validation()">
                   </div>
 
                 </div>
@@ -392,7 +397,32 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+     $("#submit-form").submit((e) => {
+    e.preventDefault();
 
+    // Perform form validation
+    if (!validation()) {
+        return;
+    }
+
+    // Form data is valid, send email
+    $.ajax({
+      url: "https://script.google.com/macros/s/AKfycbxzO-6rkKG208ZvOW6YEZJP7-D4Gn8ApDa9Q-YPxPtL22f-wxyirJcx3A1w9BoQBXs6Dw/exec",
+        data: $("#submit-form").serialize(),
+        method: "post",
+        success: function() { 
+          console.log("Form submitted successfully");
+          alert("Form submitted successfully. Your message has been sent.");
+          document.getElementById("submit-form").reset();
+        },
+        error: function(err) {
+            console.error("Something went wrong:", err);
+            alert("Something went wrong. Please try again later.");
+        }
+    });
+});
+</script>
 </body>
 
 </html>
